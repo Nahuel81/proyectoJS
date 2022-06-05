@@ -4,8 +4,7 @@ const tablero=[
 ['', '','']
 ];
 
-let turno= 0; //0=usuario y 1=PC..
-//Enumerator.querySelector()
+let turn= 0; //0=usuario y 1=PC..
 const tableroContainer= document.querySelector('#tablero');     
 const playerDiv = document.querySelector('#player');
 
@@ -27,24 +26,35 @@ function renderCurrentPlayer() {
     playerDiv.textContent = `${turn=== 0 ? "Tu Turno": "PC Turno"}`;  //MOSTRAR TURNOS
 }
 // FUNCIONES DE TURNOS
+
+//usuario
 function playerPlays(){
 const celdas= document.querySelectorAll('.celda');
 celdas.forEach((celda, i) => {
     const column = i % 3;
     const row= parseInt(i / 3);
 
-    if(tablero[row][column]=== ''){
-     celda.addEventListener('click', e =>{
-        tablero[row][column]='O';
+    if(tablero[row][column]=== '') {
+     celda.addEventListener('click', (e) => {
+        tablero[row][column] = 'O';
         celda.textContent= tablero[row][column];
-
-        PCplays();
-     }); 
+        turn = 1;
+        const won = checkIfWinner();
+        if (won==='none') {
+            PCplays();
+            return;
+        }
+        if(won==='draw'){
+        renderDraw();
+        celda.removeEventListener('click', this);
+        return;
+    }
+    }); 
     }
 });
 }
 //COMPORTAMIENTO DE LA PC
-function PCPlays(){
+function PCplays(){
 renderCurrentPlayer();
 
 setTimeout(()=>{
@@ -53,12 +63,12 @@ const options = checkIfCanWin();
 
 if(options.length > 0){
 const bestOption= options[0];
-for(let i= 0; i<bestOption.length; i++){
+for(let i= 0; i < bestOption.length; i++){
     if(bestOption[i].value===0){
         const posi = bestOption[i].i;
-        const posj = bestOption[j].j;
+        const posj = bestOption[i].j;
         tablero[posi][posj] = 'X';
-        player= true;
+        played= true;
         break;
     }
 }
@@ -70,9 +80,32 @@ for(let i= 0; i<bestOption.length; i++){
             played = true;
         }
 }
-}             
+}
+
+
+turn= 0;
+renderTablero();
+renderCurrentPlayer(); 
+
+const won= checkIfWinner();
+
+if(won=== 'none'){
+    playerPlays(); 
+    return;
+}
+if(won=== 'draw'){
+    renderDraw(); 
+    return;
+}
 },1500);
 }
+
+//rednerDraw funcion
+function renderDraw(){
+playerDiv.textContent= 'Draw';
+}
+
+
 //funcion posible win
 function checkIfCanWin(){
     const arr = JSON.parse(JSON.stringify(tablero));
@@ -110,14 +143,59 @@ const s6 =[p3, p6, p9];
 const s7 =[p1, p5, p9];
 const s8 =[p3, p5, p7];
 //todas las soluciones
-const res = [s1,s2,s3,s4,s5,s6,s7,s8].filter(line=>{
+const res = [s1,s2,s3,s4,s5,s6,s7,s8].filter((line)=>{
     return (line[0].value + line[1].value + line[2].value ===2 || 
         line[0].value + line[1].value + line[2].value === -4);
 });
 return res;
 }
 
+//Funcion Mostrar ganador
+function checkIfWinner(){
+const p1 = tablero[0][0];
+const p2 = tablero[0][1];
+const p3 = tablero[0][2];
+const p4 = tablero[1][0];
+const p5 = tablero[1][1];
+const p6 = tablero[1][2];
+const p7 = tablero[2][0];
+const p8 = tablero[2][1];
+const p9 = tablero[2][2];
 
+//JUGADAS GANADORAS
+const s1 =[p1, p2, p3];
+const s2 =[p4, p5, p6];
+const s3 =[p7, p8, p9];
+const s4 =[p1, p4, p7];
+const s5 =[p2, p5, p8];
+const s6 =[p3, p6, p9];
+const s7 =[p1, p5, p9];
+const s8 =[p3, p5, p7];
+//todas las soluciones
+const res = [s1,s2,s3,s4,s5,s6,s7,s8].filter((line)=>{
+    return  line[0] + line[1] + line[2] === 'XXX' ||
+    line[0] + line[1] + line[2] === 'OOO';
+});
+if(res.length>0){
+    if(res[0][0]==='X'){
+        playerDiv.textContent = 'PC WINS';
+        return 'pcwon'
+    } else{
+        playerDiv.textContent= 'USER WINS';
+        return 'userwon'
+    }
+}else{
+    let draw = true;
+    for (let i = 0; i < tablero.length; i++) {
+        for (let j = 0; j < tablero.length; j++) {
+        if (tablero[i][j]==='') {
+            draw = false;
+        }
+     }
+    }
+      return  draw ? 'draw' : 'none';  
+    }
+}
 
 //
 
