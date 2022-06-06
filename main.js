@@ -3,7 +3,7 @@ const tablero=[
 ['', '',''],
 ['', '','']
 ];
-
+const nombreJugador= prompt("Cual es su nombre?")
 let turn= 0; //0=usuario y 1=PC..
 const tableroContainer= document.querySelector('#tablero');     
 const playerDiv = document.querySelector('#player');
@@ -23,7 +23,7 @@ function renderTablero(){
 }
 
 function renderCurrentPlayer() {
-    playerDiv.textContent = `${turn=== 0 ? "Tu Turno": "PC Turno"}`;  //MOSTRAR TURNOS
+    playerDiv.textContent = `${turn=== 0 ? "TU TURNO "+nombreJugador.toLocaleUpperCase(): "PC TURNO"}`;  //MOSTRAR TURNOS
 }
 // FUNCIONES DE TURNOS
 
@@ -97,7 +97,7 @@ if(won=== 'draw'){
     renderDraw(); 
     return;
 }
-},1500);
+},1000);
 }
 
 //rednerDraw funcion
@@ -179,10 +179,10 @@ const res = [s1,s2,s3,s4,s5,s6,s7,s8].filter((line)=>{
 if(res.length>0){
     if(res[0][0]==='X'){
         playerDiv.textContent = 'PC WINS';
-        return 'pcwon'
+        return  swal("LO SIENTO "+nombreJugador.toLocaleUpperCase()+" HAS PERDIDO","recarga la pagina y vuelve a intentarlo","error");
     } else{
         playerDiv.textContent= 'USER WINS';
-        return 'userwon'
+        return swal("FELICIDADES "+ nombreJugador.toLocaleUpperCase()+ " ERES EL GANADOR","recarga la pagina para volver a jugar","success")
     }
 }else{
     let draw = true;
@@ -193,7 +193,7 @@ if(res.length>0){
         }
      }
     }
-      return  draw ? 'draw' : 'none';  
+      return  draw ? swal("ESTUVISTE MUY CERCA "+nombreJugador.toLocaleUpperCase()+ " ES UN EMPATE", "recarga la pagina para volver a intentarlo","success") : 'none';  
     }
 }
 
