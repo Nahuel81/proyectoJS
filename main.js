@@ -23,7 +23,7 @@ function renderTablero(){
 }
 
 function renderCurrentPlayer() {
-    playerDiv.textContent = `${turn=== 0 ? "TU TURNO "+nombreJugador.toLocaleUpperCase(): "PC TURNO"}`;  //MOSTRAR TURNOS
+    playerDiv.textContent = `${turn=== 0 ? "TU TURNO "+nombreJugador.toLocaleUpperCase(): "TURNO PC"}`;  //MOSTRAR TURNOS
 }
 // FUNCIONES DE TURNOS
 
