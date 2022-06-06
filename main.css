@@ -1,11 +1,13 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: blueviolet;
+    color: white;
+    background-color: #05380b;
 }
 
 #app{
 width: 300px; 
 margin: 0 auto;
+padding-top: 80px;
 }
 
 #player{
@@ -27,4 +29,59 @@ flex-direction: column;
     border: solid 1px black;
     font-size: 28px;
     font-weight: bolder;
+    background-color: #3bfc58;
+}
+
+/*pie*/
+.pieDePagina{
+    display:flex;
+}
+.redes{
+    width: 50%;
+}
+.contacto{
+    width: 50%;
+}
+
+ul li{
+    display: inline;
+}
+.icono{
+    color: white;
+    font-size: 50px;
+    padding: 5px;
+    padding-top: 10px;
+}
+/*AUDIO*/
+
+/*decoracion de pagina*/
+
+
+.loader{
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+.bar{
+    display: inline-block;
+    width: 3px;
+    height: 25px;
+    background-color: rgba(67, 237, 24, 0.5);
+    border-radius: 10px;
+    animation: scale-up 1s linear infinite;
+}
+.bar:nth-child(2){
+height: 40px;
+margin: 0 5px;
+animation-delay: .25s;
+}
+.bar:nth-child(3){
+animation-delay: .5s;
+}
+@keyframes scale-up{
+    20% {
+        background-color: white;
+        transform: scaleY(1.5);
+    }
 }

@@ -4,22 +4,50 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--estilo de alertas-->
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <!--iconos-->
+      <script src="https://kit.fontawesome.com/c9f377abbe.js" crossorigin="anonymous"></script>
+      <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+    crossorigin="anonymous">
       <title>TA-TE-TI</title>
       <link rel="stylesheet" href="main.css"/>
     </head>
     <body>
-        <div id="app">
+        <nav class="navbar fixed-top" style="background-color: #05380b">
+            <div class="container-fluid">
+              <div class="navbar-brand">
+                <audio autoplay loop>
+                 <source src="audio/Frogs Legs Rag.mp3" type="audio/mp3">
+              </audio>
+                <div class="loader">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <!--<img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">-->
+              </div>
+            </div>
+          </nav>
+          <div id="app">
             <div id="player"></div>
             <div id="tablero"></div>
         </div>
-    <footer class="pie">
+        <div class="pieDePagina">
+    <div class="redes">
         <ul>
-        <li>instagram</li>
-        <li>Linkedin</li>
-        <li>GitHub</li>
+        <li><a href="https://www.instagram.com/dieegonahuell/" target="_blank"><i class="fa-brands fa-instagram icono"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/diego-nahuel-2724a522b/" target="_blank"><i class="fa-brands fa-linkedin-in icono"></i></a></li>
+        <li><a href="https://github.com/Nahuel81" target="_blank"><i class="fa-brands fa-github icono"></i></a></li>
         </ul>
-    </footer>
+    </div>
+<div class="contacto">
+</div>
+  </div>
         <script src="main.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>
